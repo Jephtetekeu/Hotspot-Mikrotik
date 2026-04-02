@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Déconnexion</title>
+    <link rel="stylesheet" href="hotspot.css">
+</head>
+<body>
+
+    <div class="login-card">
+        <span class="wifi-icon">👋</span>
+
+        <h2 class="muted">Déconnecté</h2>
+        <div class="welcome">À bientôt, <b>$(username)</b> !</div>
+
+        <div class="stats-box neutral">
+            <p>Durée de la session : <span>$(uptime)</span></p>
+            <p>Données téléchargées : <span>$(bytes-out-nice)</span></p>
+            <p>Données envoyées : <span>$(bytes-in-nice)</span></p>
+        </div>
+
+        <form action="$(link-login)" name="login">
+            <button type="submit">Se reconnecter</button>
+        </form>
+    </div>
+
+</body>
+</html>

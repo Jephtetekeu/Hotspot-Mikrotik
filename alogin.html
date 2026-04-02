@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion réussie</title>
+    <meta http-equiv="refresh" content="5; url=$(link-redirect)">
+    <link rel="stylesheet" href="hotspot.css">
+    <script>
+        function startClock() {
+            var seconds = 5;
+            var el = document.getElementById('countdown');
+            if (!el) return;
+            el.textContent = seconds;
+            var interval = setInterval(function() {
+                seconds--;
+                el.textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    window.location.href = '$(link-redirect)';
+                }
+            }, 1000);
+        }
+    </script>
+</head>
+<body onload="startClock()">
+
+    <div class="login-card">
+        <span class="wifi-icon">✅</span>
+        <h2>Connexion réussie !</h2>
+        <div class="loader"></div>
+        <p>Vous êtes maintenant connecté au réseau.<br>Redirection dans <strong id="countdown">5</strong> secondes...</p>
+        <a href="$(link-redirect)" class="btn btn-ghost">Cliquez ici si rien ne se passe</a>
+    </div>
+
+</body>
+</html>

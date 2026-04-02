@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statut de la connexion</title>
+    $(if refresh-timeout)
+    <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+    $(endif)
+    <link rel="stylesheet" href="hotspot.css">
+</head>
+<body>
+
+    <div class="login-card">
+        <span class="wifi-icon">✅</span>
+
+        <h2>Connecté</h2>
+        <div class="welcome">Bienvenue, <b>$(username)</b> !</div>
+
+        <div class="stats-box">
+            <p>Adresse IP : <span>$(ip)</span></p>
+            <p>Trafic descendant : <span>$(bytes-out-nice)</span></p>
+            <p>Trafic montant : <span>$(bytes-in-nice)</span></p>
+            <p>Temps connecté : <span>$(uptime)</span></p>
+
+            $(if session-time-left)
+            <p>Temps restant : <span>$(session-time-left)</span></p>
+            $(endif)
+
+            $(if remain-bytes-total)
+            <p>Données restantes : <span>$(remain-bytes-total-nice)</span></p>
+            $(endif)
+        </div>
+
+        <form action="$(link-logout)" name="logout">
+            <input type="hidden" name="erase-cookie" value="on" />
+            <button type="submit">Se déconnecter</button>
+        </form>
+    </div>
+
+</body>
+</html>

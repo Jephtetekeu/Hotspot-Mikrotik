@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Wi-Fi</title>
+    <link rel="stylesheet" href="hotspot.css">
+</head>
+<body>
+
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+    <script type="text/javascript" src="/md5.js"></script>
+    <script type="text/javascript">
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
+
+    <div class="login-card">
+        <span class="wifi-icon">📶</span>
+
+        <h2>Connexion Wi-Fi</h2>
+
+        $(if error)
+        <div class="error-msg">$(error)</div>
+        $(endif)
+
+        <form name="login" action="$(link-login-only)" method="post" $(if chap-id)onsubmit="return doLogin()"$(endif)>
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Identifiant" required />
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Mot de passe" required />
+            </div>
+
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+
+</body>
+</html>
